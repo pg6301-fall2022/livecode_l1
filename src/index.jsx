@@ -4,11 +4,24 @@ import {Routes, Route, Link, BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const movies = [
+const MOVIES = [
     {
         title: "Dune",
         plot: " The desert world of Arrakis, source of all Melange, is fought over by two houses of the Imperium ",
         year: 2021
+    },
+    {
+        title: "Plan 9 from outer space",
+        plot: "I dunno mate... Bela Lugosi is in it, though...",
+        year: 1957
+    }
+];
+
+const BAD_MOVIES = [
+    {
+        title: "Enter the Ninja",
+        plot: " Guy in jeans is more ninja than the ninjas ",
+        year: 1981
     },
     {
         title: "Plan 9 from outer space",
@@ -27,7 +40,7 @@ function FrontPage(){
     </div>
 }
 
-function ListMovies(){
+function ListMovies({movies}){
     return <div>
         <h1> List Movies </h1>
         {
@@ -47,7 +60,7 @@ function Application(){
         <Routes>
             <Route path="/" element={<FrontPage/>}></Route>
             <Route path="/movies/new" element={<h1>New movie</h1>}></Route>
-            <Route path="/movies" element={<ListMovies/>}></Route>
+            <Route path="/movies" element={<ListMovies movies={MOVIES}/>}></Route>
         </Routes>
     </BrowserRouter>
 }
