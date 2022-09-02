@@ -5,12 +5,12 @@ const app = express();
 
 const MOVIES = [
     {
-        title: "Dune",
+        title: "Dune - server",
         plot: " The desert world of Arrakis, source of all Melange, is fought over by two houses of the Imperium ",
         year: 2021
     },
     {
-        title: "Plan 9 from outer space",
+        title: "Plan 9 from outer space - server",
         plot: "I dunno mate... Bela Lugosi is in it, though...",
         year: 1957
     }
@@ -27,4 +27,4 @@ app.use((req, res) => {
 
 const server = app.listen(3000, () => {
     console.log("Listening on http://localhost:" + server.address().port);
-})
+});

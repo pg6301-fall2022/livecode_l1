@@ -3,7 +3,22 @@ import {useState, useEffect} from "react";
 import * as ReactDOM from "react-dom/client";
 import {Routes, Route, Link, BrowserRouter, useNavigate} from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('app'));
+
+
+const MOVIES = [
+    {
+        title: "Dune - client",
+        plot: " The desert world of Arrakis, source of all Melange, is fought over by two houses of the Imperium ",
+        year: 2021
+    },
+    {
+        title: "Plan 9 from outer space - client",
+        plot: "I dunno mate... Bela Lugosi is in it, though...",
+        year: 1957
+    }
+];
+
 
 function FrontPage(){
     return <div>
@@ -18,13 +33,17 @@ function FrontPage(){
 function ListMovies({moviesApi}){
     const [movies, setMovies] = useState();
 
-    useEffect( async () =>{
-        console.log("hello");
-        setMovies(undefined);
-        setMovies(await moviesApi.listMovies());
-        }, []);
+    useEffect(  () => {
+        async function fetchData() {
+
+            console.log("hello");
+            setMovies(undefined);
+            setMovies(await moviesApi.listMovies());
+        }
+    }, []);
 
     if(!movies){
+        console.log(movies);
         return <div>Loading...</div>
     }
 
@@ -37,7 +56,7 @@ function ListMovies({moviesApi}){
                 <div> {m.plot} </div>
             </div>
         )}
-    </div>
+    </div>;
 }
 
 
@@ -51,6 +70,7 @@ function NewMovie({moviesApi}){
     async function handleSubmit(e){
         e.preventDefault();
         await moviesApi.onAddMovie({title, plot, year});
+        console.log(MOVIES);
         navigate("/");
     }
 
@@ -73,7 +93,10 @@ function Application(){
 
     const moviesApi = {
         onAddMovie: async (m) => MOVIES.push(m),
-        listMovies: async () => MOVIES
+        listMovies: async () => {
+            const res = await fetch("/api/movies");
+            return res.json();
+        }
     }
 
     return <BrowserRouter>
