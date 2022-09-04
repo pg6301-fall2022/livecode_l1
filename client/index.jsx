@@ -5,21 +5,6 @@ import {Routes, Route, Link, BrowserRouter, useNavigate} from "react-router-dom"
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
 
-
-const MOVIES = [
-    {
-        title: "Dune - client",
-        plot: " The desert world of Arrakis, source of all Melange, is fought over by two houses of the Imperium ",
-        year: 2021
-    },
-    {
-        title: "Plan 9 from outer space - client",
-        plot: "I dunno mate... Bela Lugosi is in it, though...",
-        year: 1957
-    }
-];
-
-
 function FrontPage(){
     return <div>
         <h1> Lesson 2 - Movie database</h1>
@@ -34,12 +19,12 @@ function ListMovies({moviesApi}){
     const [movies, setMovies] = useState();
 
     useEffect(  () => {
-        async function fetchData() {
-
+        async function fetchData(){
             console.log("hello");
             setMovies(undefined);
             setMovies(await moviesApi.listMovies());
         }
+        fetchData();
     }, []);
 
     if(!movies){
