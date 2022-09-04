@@ -4,9 +4,13 @@
   "description": "# Tour of the course",
   "main": "index.js",
   "scripts": {
+    "start": "cd server && npm start",
     "dev": "concurrently npm:dev:server npm:dev:client",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm install --include=dev && npm run build",
+    "build:server": "cd server && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +23,14 @@
     "url": "https://github.com/pg6301-fall2022/livecode_l1/issues"
   },
   "homepage": "https://github.com/pg6301-fall2022/livecode_l1#readme",
-  "dependencies": {
+  "devDependencies": {
     "concurrently": "^7.3.0"
+  },
+  "engines": {
+    "node": "16.17.0",
+    "npm":"8.15.0"
+  },
+  "dependencies": {
+    "check-node-version": "^4.2.1"
   }
 }
