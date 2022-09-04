@@ -6,7 +6,7 @@
 * [x] Routing requests in React 
 * [x] List existing items (movies in this case)
 * [x] Add new items using forms and state
-* [ ] Encapsulate database
-* [ ] Express app
-* [ ] Move API to server
+* [x] Encapsulate database
+* [x] Express app
+* [x] Move API to server
 * [ ] Deploy to Heroku
